@@ -14,10 +14,16 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
+  var msg = 
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const command = args.shift().toLowerCase();
+  try {
+    let commandFile = require(`./commands/${cmd}.js`)
+    
+  } catch (e) 
+  {}
 
 	// other commands...
 });
