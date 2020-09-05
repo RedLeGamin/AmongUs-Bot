@@ -13,26 +13,27 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('message', message => {
-  
-	if (!message.content.startsWith(prefix) || message.author.bot) return;
+client.on("message", message => {
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-	const args = message.content.slice(prefix.length).trim().split(/ +/);
-	const command = args.shift().toLowerCase();
+  const args = message.content
+    .slice(prefix.length)
+    .trim()
+    .split(/ +/);
+  const command = args.shift().toLowerCase();
   try {
-    let commandFile = require(`./commands/${command}.js`)
-    commandFile.run(client,message,args)
-  } catch (e) 
-  {
-    console.log(e.message)  
+    let commandFile = require(`./commands/${command}.js`);
+    commandFile.run(client, message, args);
+  } catch (e) {
+    console.log(e.message);
   }
-
 });
 
+function log(eventName, options = {})
 
 client.on('guildMemberUpdate', (oldMember, newMember) => {
-  if(oldMember.premiumSince != null && newMember.premiumSince == null) log("boost-end")
-  else if(oldMember.premiumSince != null && newMember.premiumSince == null) log("boost-start", u)
+  if(oldMember.premiumSince != null && newMember.premiumSince == null) log("boost-end", {"user": newMember.user})
+  else if(oldMember.premiumSince == null && newMember.premiumSince != null) log("boost-start", {"user": newMember.user})
 })
 
 for (const file of commandFiles) {
