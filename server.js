@@ -29,7 +29,11 @@ client.on("message", message => {
   }
 });
 
-function log(eventName, options = {})
+function log(eventName, options = {}) {
+  message.channel.send()
+}
+
+
 
 client.on('guildMemberUpdate', (oldMember, newMember) => {
   if(oldMember.premiumSince != null && newMember.premiumSince == null) log("boost-end", {"user": newMember.user})
@@ -40,5 +44,5 @@ for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
 }
-console.log(token)
+
 client.login(token)
