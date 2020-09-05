@@ -15,10 +15,9 @@ const commandFiles = fs
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
   reactionsChannel.forEach(element => async function() {
-    let channel = await client.guilds
-      .find("id", "712346020293640223")
-      .channels.get("713181850763526217");
-    channel.fetchMessages({ limit: 90 }).then(fetchedChannel => {});
+    let channel = await client
+      .channels.get(element);
+    channel.fetchMessages({ limit: 10 }).then(fetchedChannel => {});
   });
 });
 
