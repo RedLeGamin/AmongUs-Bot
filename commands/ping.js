@@ -1,9 +1,3 @@
-console.log("penis")
-
-module.exports = {
-	name: 'ping',
-	description: 'Ping!',
-	execute(message, args) {
-		message.channel.send('Pong.');
-	},
-};
+exports.run = (client, message, args, tools) => {
+  message.channel.send("pong")
+}

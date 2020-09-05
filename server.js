@@ -14,20 +14,26 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-  var msg = 
+  
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const command = args.shift().toLowerCase();
   try {
-    let commandFile = require(`./commands/${cmd}.js`)
-    
+    let commandFile = require(`./commands/${command}.js`)
+    commandFile.run(client,message,args)
   } catch (e) 
-  {}
+  {
+    console.log(e.message)  
+  }
 
-	// other commands...
 });
 
+
+client.on('guildMemberUpdate', (oldMember, newMember) => {
+  if(oldMember.premiumSince != null && newMember.premiumSince == null) log("boost-end")
+  else if(oldMember.premiumSince != null && newMember.premiumSince == null) log("boost-start", u)
+})
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
