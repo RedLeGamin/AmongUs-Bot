@@ -40,8 +40,6 @@ client.on("ready", async () => {
 });
 
 client.on("message", message => {
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
-
   const args = message.content
     .slice(prefix.length)
     .trim()
@@ -49,15 +47,22 @@ client.on("message", message => {
   const command = args.shift().toLowerCase();
 
   if (message.channel.name.includes("ticket-")) {
+ console.log("tez")
+    return message.channel.send(
+      new Discord.MessageEmbed()
+        .setTitle("Systeme Ticket")
+        .setDescription("Réagir sur 📧 pour ouvrir un ticket!")
+        .setFooter("wsh xblackouille")
+        .setColor("00ff00")
+    );
     const stepsdb = new FileSync("./data/steps.json");
     const db = low(stepsdb);
     var data = db.find({ channel: message.channel.id }).value();
     if (!db) return;
-    if (data.state == 0) {
-      message.channel.send("Quel est le problème ?\n\n");
-    }
+    return message.channel.send("Quel est le problème ?");
   }
-
+  
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
   try {
     let commandFile = require(`./commands/${command}.js`);
     commandFile.run(client, message, args);
@@ -131,8 +136,8 @@ client.on("messageReactionAdd", async (reaction, user) => {
         const reactionsChanneldb = new FileSync(
           "./data/reactionsChannels.json"
         );
-        const db = low(reactionsChanneldb);
-        db.push(channel.id).write();
+        const dbt = low(reactionsChanneldb);
+        dbt.push(channel.id).write();
       });
   }
 });
