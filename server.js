@@ -8,7 +8,10 @@ const client = new Discord.Client();
 const reactionsChannel = require("./data/reactionsChannels.json");
 client.commands = new Discord.Collection();
 
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
 
+const reactionsChanneldb = new FileSync('./data/reactionsChannel.json')
 
 const commandFiles = fs
   .readdirSync("./commands")
@@ -17,14 +20,12 @@ const commandFiles = fs
 client.on("ready", async () => {
       console.log(`Logged in as ${client.user.tag}!`);
       console.log(reactionsChannel);
+      console.log(reactionsChanneldb);
       for (var i = 0; i < reactionsChannel.length; i++) {
         let element = reactionsChannel[i];
-        console.log(element);
         let channel = await client.channels.fetch(element);
-        console.log(channel);
         channel.messages.fetch({ limit: 10 }).then(fetchedChannel => {});
       }
-     
 });
 
 client.on("message", message => {
