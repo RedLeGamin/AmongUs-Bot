@@ -106,7 +106,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
             topic: user.id,
             type: 'text'
         }).then(async channel => {
-          
+          db.push({ id:user.id, channel : channel.id, state: 0}).write() 
             channel.send(`<@${user.id}>`, new Discord.MessageEmbed().setTitle("-").setDescription("-").setColor("00ff00"))
         })
     }
