@@ -32,8 +32,15 @@ client.on("ready", async () => {
   console.log(reactionsChanneldb);
   for (var i = 0; i < reactionsChannel.length; i++) {
     let element = reactionsChannel[i];
-    let channel = await client.channels.fetch(element);
-    console.log(channel) 
+    let channel = await client.channels.fetch(element).catch(channel => {console.log("++")});
+    if(!channel) {
+      const reactionsChanneldb = new FileSync(
+          "./data/reactionsChannels.json"
+        );
+        const dbt = low(reactionsChanneldb);
+        dbt.remove(reactionsChannel[i]).write(); 
+      return;
+    }
     await channel.messages.fetch({ limit: 10 }).then(channel2 => {
       console.log(channel2)
       console.log(channel.name + " fetched !");
@@ -49,7 +56,7 @@ client.on("message", message => {
   const command = args.shift().toLowerCase();
   
   if (message.author.bot) return;
-  if (message.channel.name.includes("ticket-")) {
+  if (message.channel.name.includes("ticket-") && command !== "close") {
     console.log("tez");  
     const stepsdb = new FileSync("./data/steps.json");
     const db = low(stepsdb);
