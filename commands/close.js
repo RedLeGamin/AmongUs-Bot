@@ -16,9 +16,9 @@ exports.run = (client, message, args, tools) => {
     dbt.remove(data.channel).write();
     db.remove({ id: message.author.id }).write();
   }
-  message.channel.send("Ce channel sera supprimé dans quelques secondes !").then( message => {setTimeout(function() {
+  message.channel.send("✅ **Compris !** Ce channel sera supprimé dans 10 secondes !").then( message => {setTimeout(function() {
     message.channel.delete();
-}, 2000);})
+}, 10000);})
   
 
   

@@ -125,8 +125,8 @@ client.on("messageReactionAdd", async (reaction, user) => {
   let ticketid = await settings.get(`${reaction.message.guild.id}-ticket`);
 
   if (!ticketid) return;
-
-  if (reaction.message.id == ticketid && reaction.emoji.name == "🎫") {
+  console.log("penis")
+  if (reaction.message.id == ticketid && reaction.emoji.name == "📩") {
     const stepsdb = new FileSync("./data/steps.json");
     const db = low(stepsdb);
     console.log(db.find({ id: user.id }).value());

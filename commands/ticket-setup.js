@@ -24,12 +24,11 @@ exports.run = (client, message, args, tools) => {
     let sent = await channel.send(
       new Discord.MessageEmbed()
         .setTitle("Systeme Ticket")
-        .setDescription("Réagir sur 📧 pour ouvrir un ticket!")
-        .setFooter("wsh xblackouille")
+        .setDescription("Réagir sur 📩 pour ouvrir un ticket!")
         .setColor("00ff00")
     );
     db.push(message.channel.id).write();
-    sent.react("🎫");
+    sent.react("📩");
      settings.set(`${message.guild.id}-ticket`, sent.id);
   }
   p();
