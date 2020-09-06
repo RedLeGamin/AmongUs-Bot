@@ -11,7 +11,18 @@ client.commands = new Discord.Collection();
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 
-const reactionsChanneldb = new FileSync('./data/reactionsChannel.json')
+const reactionsChanneldb = new FileSync('./data/reactionsChannels.json') 
+
+const enmap = require('enmap');
+
+
+const settings = new enmap({
+    name: "settings",
+    autoFetch: true,
+    cloneLevel: "deep",
+    fetchAll: true
+});
+
 
 const commandFiles = fs
   .readdirSync("./commands")
@@ -24,7 +35,7 @@ client.on("ready", async () => {
       for (var i = 0; i < reactionsChannel.length; i++) {
         let element = reactionsChannel[i];
         let channel = await client.channels.fetch(element);
-        channel.messages.fetch({ limit: 10 }).then(fetchedChannel => {});
+        await channel.messages.fetch({ limit: 10 }).then(channel2 => {console.log(channel.name + " fetched !")});
       }
 });
 
@@ -61,6 +72,7 @@ for (const file of commandFiles) {
 }
 
 client.on('messageReactionAdd', async (reaction, user) => {
+    console.log("-(---)")
     if(user.partial) await user.fetch();
     if(reaction.partial) await reaction.fetch();
     if(reaction.message.partial) await reaction.message.fetch();
@@ -91,6 +103,6 @@ client.on('messageReactionAdd', async (reaction, user) => {
             channel.send(`<@${user.id}>`, new Discord.MessageEmbed().setTitle("-").setDescription("-").setColor("00ff00"))
         })
     }
-});
+}); 
 
 client.login(token);

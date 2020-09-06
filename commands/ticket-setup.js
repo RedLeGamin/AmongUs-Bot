@@ -2,7 +2,17 @@ const fs = require("fs");
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 
-const reactionsChanneldb = new FileSync('./data/reactionsChannel.json')
+const enmap = require('enmap');
+
+
+const settings = new enmap({
+    name: "settings",
+    autoFetch: true,
+    cloneLevel: "deep",
+    fetchAll: true
+});
+const reactionsChanneldb = new FileSync('./data/reactionsChannels.json')
+const db = low(reactionsChanneldb )
 exports.run = (client, message, args, tools) => {
   console.log("Test2");
   const Discord = require("discord.js");
@@ -17,9 +27,9 @@ exports.run = (client, message, args, tools) => {
         .setFooter("wsh xblackouille")
         .setColor("00ff00")
     );
-    reactionsChanneldb.get(message.user.id,
+    db.push(message.channel.id).write() 
     sent.react("🎫");
-    
+     settings.set(`${message.guild.id}-ticket`, sent.id);
   }
   p();
 };
