@@ -20,16 +20,22 @@ const commandFiles = fs
   .readdirSync("./commands")
   .filter(file => file.endsWith(".js"));
 
-client.on("ready", () => async function () {
-  console.log(`Logged in as ${client.user.tag}!`);
-  console.log(reactionsChannel)
-  reactionsChannel.forEach(element =>  {
-    
-    let channel = client
-      .channels.get(element);
-    channel.fetchMessages({ limit: 10 }).then(channel => {console.log(channel.name + " fetched")});
-  });
-});
+client.on(
+  "ready",
+  () =>
+    async function() {
+      console.log(`Logged in as ${client.user.tag}!`);
+      console.log(reactionsChannel);
+      reactionsChannel.forEach(element => {
+        (async function() {
+          let channel = await client.channels.get(element);
+          channel.fetchMessages({ limit: 10 }).then(channel => {
+            console.log(channel.name + " fetched");
+          });
+        });
+      });
+    }
+);
 
 client.on("message", message => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
