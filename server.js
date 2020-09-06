@@ -8,13 +8,7 @@ const client = new Discord.Client();
 const reactionsChannel = require("./data/reactionsChannels.json");
 client.commands = new Discord.Collection();
 
- const enmap = require("enmap");
-  const settings = new enmap({
-    name: "settings",
-    autoFetch: true,
-    cloneLevel: "deep",
-    fetchAll: true
-  });
+
 
 const commandFiles = fs
   .readdirSync("./commands")

@@ -1,13 +1,9 @@
+const fs = require("fs");
+
 exports.run = (client, message, args, tools) => {
   console.log("Test2");
   const Discord = require("discord.js");
-  const enmap = require("enmap");
-  const settings = new enmap({
-    name: "settings",
-    autoFetch: true,
-    cloneLevel: "deep",
-    fetchAll: true
-  });
+  
   let channel = message.mentions.channels.first();
   if (!channel) return message.reply("`!ticket-setup #channel`");
   async function p() {
@@ -20,7 +16,7 @@ exports.run = (client, message, args, tools) => {
     );
 
     sent.react("🎫");
-    settings.set(`${message.guild.id}-ticket`, sent.id);
+    
   }
   p();
 };
