@@ -84,6 +84,12 @@ client.on('messageReactionAdd', async (reaction, user) => {
     if(!ticketid) return;
 
     if(reaction.message.id == ticketid && reaction.emoji.name == '🎫') {
+      
+        const stepsdb = new FileSync('./data/steps.json')
+        const db = low(stepsdb);
+        console.log(db.find({"id": user.id }).value()) 
+      
+        if(db.find({ id:user.id }).value()) return;
         reaction.users.remove(user);
 
         reaction.message.guild.channels.create(`ticket-${user.username}`, {
@@ -100,6 +106,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
             topic: user.id,
             type: 'text'
         }).then(async channel => {
+          
             channel.send(`<@${user.id}>`, new Discord.MessageEmbed().setTitle("-").setDescription("-").setColor("00ff00"))
         })
     }
