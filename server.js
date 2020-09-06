@@ -55,7 +55,16 @@ client.on("message", message => {
     const db = low(stepsdb);
     var data = db.find({ channel: message.channel.id }).value();
     if (!db) return;
-    return message.channel.send("**Quel est le problème ?**\n\n");
+    if(data.state !== 0) return;
+    var machintruc = [
+      {"name": "red trop bg ?", "emoji": "<:redlegamin:410054314082435077>"},
+      {"name": "autre truc", "emoji" : "<a:nugget:679859998716854281>"}
+      
+    ]
+    var output = ""; 
+    db.find({ channel: message.channel.id }).assign({state: 1})
+    machintruc.forEach((element => output += element.emoji + element.name))
+    return message.channel.send("**Quel est le problème ?**\n\n" +output);
   }
    
 });
