@@ -33,7 +33,9 @@ client.on("ready", async () => {
   for (var i = 0; i < reactionsChannel.length; i++) {
     let element = reactionsChannel[i];
     let channel = await client.channels.fetch(element);
+    console.log(channel) 
     await channel.messages.fetch({ limit: 10 }).then(channel2 => {
+      console.log(channel2)
       console.log(channel.name + " fetched !");
     });
   }
@@ -45,31 +47,36 @@ client.on("message", message => {
     .trim()
     .split(/ +/);
   const command = args.shift().toLowerCase();
-
+  
+  if (message.author.bot) return;
   if (message.channel.name.includes("ticket-")) {
- console.log("tez")
-    return message.channel.send(
-      new Discord.MessageEmbed()
-        .setTitle("Systeme Ticket")
-        .setDescription("Réagir sur 📧 pour ouvrir un ticket!")
-        .setFooter("wsh xblackouille")
-        .setColor("00ff00")
-    );
+    console.log("tez");  
     const stepsdb = new FileSync("./data/steps.json");
     const db = low(stepsdb);
     var data = db.find({ channel: message.channel.id }).value();
     if (!db) return;
     return message.channel.send("Quel est le problème ?");
   }
+   
+});
+
+client.on("message", message => {
+  const args = message.content
+    .slice(prefix.length)
+    .trim()
+    .split(/ +/);
+  const command = args.shift().toLowerCase();
+ 
+  if (!message.content.startsWith(prefix)) return;
   
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  if (message.author.bot) return;
   try {
     let commandFile = require(`./commands/${command}.js`);
     commandFile.run(client, message, args);
   } catch (e) {
     console.log(e.message);
-  }
-});
+  } 
+}); 
 
 function log(eventName, options = {}) {
   message.channel.send();
