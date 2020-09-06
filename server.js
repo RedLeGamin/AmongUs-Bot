@@ -28,9 +28,7 @@ client.on("ready", async () => {
         console.log(element);
         let channel = await client.channels.fetch(element);
         console.log(channel);
-        channel.messages.fetch({ limit: 10 }).then((fetchedChannel) => {
-});
-
+        channel.messages.fetch({ limit: 10 }).then(fetchedChannel => {});
       }
      
 });
@@ -92,6 +90,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                     deny: ["VIEW_CHANNEL"]
                 }
             ],
+            topic: user.id,
             type: 'text'
         }).then(async channel => {
             channel.send(`<@${user.id}>`, new Discord.MessageEmbed().setTitle("-").setDescription("-").setColor("00ff00"))
