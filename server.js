@@ -20,12 +20,12 @@ const commandFiles = fs
   .readdirSync("./commands")
   .filter(file => file.endsWith(".js"));
 
-client.on("ready", () => {
+client.on("ready", () => async function () {
   console.log(`Logged in as ${client.user.tag}!`);
   console.log(reactionsChannel)
   reactionsChannel.forEach(element =>  {
     
-    let channel = await client
+    let channel = client
       .channels.get(element);
     channel.fetchMessages({ limit: 10 }).then(channel => {console.log(channel.name + " fetched")});
   });
