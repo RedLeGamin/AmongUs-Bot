@@ -22,10 +22,12 @@ const commandFiles = fs
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  reactionsChannel.forEach(element => async function() {
+  console.log(reactionsChannel)
+  reactionsChannel.forEach(element =>  {
+    
     let channel = await client
       .channels.get(element);
-    channel.fetchMessages({ limit: 10 }).then(fetchedChannel => {});
+    channel.fetchMessages({ limit: 10 }).then(channel => {console.log(channel.name + " fetched")});
   });
 });
 
@@ -88,7 +90,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
             ],
             type: 'text'
         }).then(async channel => {
-            channel.send(`<@${user.id}>`, new Discord.MessageEmbed().setTitle("Welcome to your ticket!").setDescription("We will be with you shortly").setColor("00ff00"))
+            channel.send(`<@${user.id}>`, new Discord.MessageEmbed().setTitle("-").setDescription("-").setColor("00ff00"))
         })
     }
 });
