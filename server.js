@@ -20,22 +20,18 @@ const commandFiles = fs
   .readdirSync("./commands")
   .filter(file => file.endsWith(".js"));
 
-client.on(
-  "ready",
-  () =>
-    async function() {
+client.on("ready", async () => {
       console.log(`Logged in as ${client.user.tag}!`);
       console.log(reactionsChannel);
-      reactionsChannel.forEach(element => {
-        (async function() {
-          let channel = await client.channels.get(element);
-          channel.fetchMessages({ limit: 10 }).then(channel => {
-            console.log(channel.name + " fetched");
-          });
-        });
-      });
-    }
-);
+      for (var i = 0; i < reactionsChannel.length; i++) {
+        let element = reactionsChannel[i];
+        console.log(element);
+        
+        let channel = await client.guilds.get("429158600720515072").channels.get(element);
+        console.log(channel);
+      }
+     
+});
 
 client.on("message", message => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
