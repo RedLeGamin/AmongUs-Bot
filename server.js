@@ -8,35 +8,35 @@ const client = new Discord.Client();
 const reactionsChannel = require("./data/reactionsChannels.json");
 client.commands = new Discord.Collection();
 
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
+const low = require("lowdb");
+const FileSync = require("lowdb/adapters/FileSync");
 
-const reactionsChanneldb = new FileSync('./data/reactionsChannels.json') 
+const reactionsChanneldb = new FileSync("./data/reactionsChannels.json");
 
-const enmap = require('enmap');
-
+const enmap = require("enmap");
 
 const settings = new enmap({
-    name: "settings",
-    autoFetch: true,
-    cloneLevel: "deep",
-    fetchAll: true
+  name: "settings",
+  autoFetch: true,
+  cloneLevel: "deep",
+  fetchAll: true
 });
-
 
 const commandFiles = fs
   .readdirSync("./commands")
   .filter(file => file.endsWith(".js"));
 
 client.on("ready", async () => {
-      console.log(`Logged in as ${client.user.tag}!`);
-      console.log(reactionsChannel);
-      console.log(reactionsChanneldb);
-      for (var i = 0; i < reactionsChannel.length; i++) {
-        let element = reactionsChannel[i];
-        let channel = await client.channels.fetch(element);
-        await channel.messages.fetch({ limit: 10 }).then(channel2 => {console.log(channel.name + " fetched !")});
-      }
+  console.log(`Logged in as ${client.user.tag}!`);
+  console.log(reactionsChannel);
+  console.log(reactionsChanneldb);
+  for (var i = 0; i < reactionsChannel.length; i++) {
+    let element = reactionsChannel[i];
+    let channel = await client.channels.fetch(element);
+    await channel.messages.fetch({ limit: 10 }).then(channel2 => {
+      console.log(channel.name + " fetched !");
+    });
+  }
 });
 
 client.on("message", message => {
@@ -47,6 +47,17 @@ client.on("message", message => {
     .trim()
     .split(/ +/);
   const command = args.shift().toLowerCase();
+
+  if (message.channel.name.includes("ticket-")) {
+    const stepsdb = new FileSync("./data/steps.json");
+    const db = low(stepsdb);
+    var data = db.find({ channel: message.channel.id }).value();
+    if (!db) return;
+    if (data.state == 0) {
+      message.channel.send("Quel est le problème ?\n\n");
+    }
+  }
+
   try {
     let commandFile = require(`./commands/${command}.js`);
     commandFile.run(client, message, args);
@@ -71,45 +82,59 @@ for (const file of commandFiles) {
   client.commands.set(command.name, command);
 }
 
-client.on('messageReactionAdd', async (reaction, user) => {
-    console.log("-(---)")
-    if(user.partial) await user.fetch();
-    if(reaction.partial) await reaction.fetch();
-    if(reaction.message.partial) await reaction.message.fetch();
+client.on("messageReactionAdd", async (reaction, user) => {
+  if (user.partial) await user.fetch();
+  if (reaction.partial) await reaction.fetch();
+  if (reaction.message.partial) await reaction.message.fetch();
 
-    if(user.bot) return;
+  if (user.bot) return;
 
-    let ticketid = await settings.get(`${reaction.message.guild.id}-ticket`);
+  let ticketid = await settings.get(`${reaction.message.guild.id}-ticket`);
 
-    if(!ticketid) return;
+  if (!ticketid) return;
 
-    if(reaction.message.id == ticketid && reaction.emoji.name == '🎫') {
-      
-        const stepsdb = new FileSync('./data/steps.json')
-        const db = low(stepsdb);
-        console.log(db.find({"id": user.id }).value()) 
-      
-        if(db.find({ id:user.id }).value()) return;
-        reaction.users.remove(user);
+  if (reaction.message.id == ticketid && reaction.emoji.name == "🎫") {
+    const stepsdb = new FileSync("./data/steps.json");
+    const db = low(stepsdb);
+    console.log(db.find({ id: user.id }).value());
 
-        reaction.message.guild.channels.create(`ticket-${user.username}`, {
-            permissionOverwrites: [
-                {
-                    id: user.id,
-                    allow: ["SEND_MESSAGES", "VIEW_CHANNEL"]
-                },
-                {
-                    id: reaction.message.guild.roles.everyone,
-                    deny: ["VIEW_CHANNEL"]
-                }
-            ],
-            topic: user.id,
-            type: 'text'
-        }).then(async channel => {
-          db.push({ id:user.id, channel : channel.id, state: 0}).write() 
-            channel.send(`<@${user.id}>`, new Discord.MessageEmbed().setTitle("-").setDescription("-").setColor("00ff00"))
-        })
-    }
-}); 
+    if (db.find({ id: user.id }).value()) return;
+    reaction.users.remove(user);
+
+    reaction.message.guild.channels
+      .create(`ticket-${user.username}`, {
+        permissionOverwrites: [
+          {
+            id: user.id,
+            allow: ["SEND_MESSAGES", "VIEW_CHANNEL"]
+          },
+          {
+            id: reaction.message.guild.roles.everyone,
+            deny: ["VIEW_CHANNEL"]
+          }
+        ],
+        topic: user.id,
+        type: "text"
+      })
+      .then(async channel => {
+        db.push({ id: user.id, channel: channel.id, state: 0 }).write();
+        await channel.send(
+          `<@${user.id}>`,
+          new Discord.MessageEmbed()
+            .setTitle("Ticket")
+            .setDescription(
+              `👋 Salut ${user.username} !\nPour fermer le ticket, merci de faire la commande : /close\n\n`
+            )
+            .setColor("00ff00")
+        );
+        channel.send("Quel est-ton pseudo Minecraft ?");
+        const reactionsChanneldb = new FileSync(
+          "./data/reactionsChannels.json"
+        );
+        const db = low(reactionsChanneldb);
+        db.push(channel.id).write();
+      });
+  }
+});
 
 client.login(token);

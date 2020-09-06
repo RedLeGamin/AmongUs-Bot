@@ -12,7 +12,7 @@ const settings = new enmap({
     fetchAll: true
 });
 const reactionsChanneldb = new FileSync('./data/reactionsChannels.json')
-const db = low(reactionsChanneldb )
+const db = low(reactionsChanneldb)
 exports.run = (client, message, args, tools) => {
   console.log("Test2");
   const Discord = require("discord.js");
@@ -27,7 +27,7 @@ exports.run = (client, message, args, tools) => {
         .setFooter("wsh xblackouille")
         .setColor("00ff00")
     );
-    db.push(message.channel.id).write() 
+    db.push(message.channel.id).write();
     sent.react("🎫");
      settings.set(`${message.guild.id}-ticket`, sent.id);
   }
