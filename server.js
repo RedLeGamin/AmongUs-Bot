@@ -55,7 +55,7 @@ client.on("message", message => {
     const db = low(stepsdb);
     var data = db.find({ channel: message.channel.id }).value();
     if (!db) return;
-    return message.channel.send("Quel est le problème ?");
+    return message.channel.send("**Quel est le problème ?**\n\n");
   }
    
 });
