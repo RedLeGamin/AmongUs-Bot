@@ -26,9 +26,11 @@ client.on("ready", async () => {
       for (var i = 0; i < reactionsChannel.length; i++) {
         let element = reactionsChannel[i];
         console.log(element);
-        
-        let channel = await client.guilds.get("429158600720515072").channels.get(element);
+        let channel = await client.channels.fetch(element);
         console.log(channel);
+        channel.fetchMessages({ limit: 10 }).then((fetchedChannel) => {
+});
+
       }
      
 });
