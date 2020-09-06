@@ -21,7 +21,7 @@ const settings = new enmap({
   cloneLevel: "deep",
   fetchAll: true
 });
-
+ 
 const commandFiles = fs
   .readdirSync("./commands")
   .filter(file => file.endsWith(".js"));

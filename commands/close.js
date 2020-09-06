@@ -8,7 +8,7 @@ exports.run = (client, message, args, tools) => {
   const db = low(stepsdb);
   if (!message.channel.name.includes("ticket-")) return;
   var data = db.find({ id: message.author.id }).value();
-  if (message.member.hasPermission("ADMINISTRATOR") == false || !data) return;
+  if (message.member.hasPermission("ADMINISTRATOR") == false && !data) return;
   if (data) {
     
     const reactionsChanneldb = new FileSync("./data/reactionsChannels.json");
