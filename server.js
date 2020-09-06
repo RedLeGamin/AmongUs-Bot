@@ -28,7 +28,7 @@ client.on("ready", async () => {
         console.log(element);
         let channel = await client.channels.fetch(element);
         console.log(channel);
-        channel.fetchMessages({ limit: 10 }).then((fetchedChannel) => {
+        channel.messages.fetch({ limit: 10 }).then((fetchedChannel) => {
 });
 
       }
