@@ -57,14 +57,19 @@ client.on("message", message => {
     if (!db) return;
     if(data.state !== 0) return;
     var machintruc = [
-      {"name": "red trop bg ?", "emoji": "<:redlegamin:410054314082435077>"},
-      {"name": "autre truc", "emoji" : "<a:nugget:679859998716854281>"}
-      
+      {"name": "red trop bg ?", "emoji": "💯"},
+      {"name": "autre truc", "emoji" : "😎"}
     ]
     var output = ""; 
-    db.find({ channel: message.channel.id }).assign({state: 1})
-    machintruc.forEach((element => output += element.emoji + element.name))
-    return message.channel.send("**Quel est le problème ?**\n\n" +output);
+    db.find({ channel: message.channel.id }).assign({state: 1}).write();
+    machintruc.forEach((element => output += element.emoji + " " + element.name + "\n"))
+    message.channel.send("**Quel est le problème ?**\n\n" +output).then(message => {
+      for (var i = 0; i < machintruc.length; i++) {
+       message.react(machintruc[i].emoji)
+    }
+    });
+    
+      
   }
    
 });
@@ -144,7 +149,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
           new Discord.MessageEmbed()
             .setTitle("Ticket")
             .setDescription(
-              `👋 Salut ${user.username} !\nPour fermer le ticket, merci de faire la commande : /close\n\n`
+              `**👋 Salut ${user.username} !**\nPour fermer le ticket, merci de faire la commande : /close\n\n`
             )
             .setColor("00ff00")
         );
