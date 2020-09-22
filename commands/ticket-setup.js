@@ -14,7 +14,7 @@ const settings = new enmap({
 const reactionsChanneldb = new FileSync('./data/reactionsChannels.json')
 const db = low(reactionsChanneldb)
 exports.run = (client, message, args, tools) => {
-  if ( message.member.hasPermission("ADMINISTRATOR") == false ) return;
+  if ( message.member.hasPermission("ADMINISTRATOR") == false  ) return;
   console.log("Test2");
   const Discord = require("discord.js");
   
