@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const linkCrack = require("../config.json").linkCrack;
 exports.run = async (client, message, args, tools) => {
+  
   if (
     message.content.length != 6 ||
     ["Q", "N"].includes(message.content.slice(-1)) == false
