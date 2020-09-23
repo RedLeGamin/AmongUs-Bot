@@ -1,7 +1,20 @@
-exports.run = (client, message, args, tools) => {
-  console.log(message.content.length)
-  console.log(message.content.slice(-1))
-  console.log(["Q","N"].includes(message.content.slice(-1)))
-  if(message.content.length != 6 && ["Q","N"].includes(message.content.slice(-1)) == false) return;
-  else message.reply("Among us !")
-}
+const Discord = require("discord.js");
+
+exports.run = async (client, message, args, tools) => {
+  if (
+    message.content.length != 6 ||
+    ["Q", "N"].includes(message.content.slice(-1)) == false
+  )
+    return;
+  await message.channel.send(
+    " ",
+    new Discord.MessageEmbed()
+      .setAuthor(
+        "Partie Among Us",
+        "https://media.discordapp.net/attachments/405780210265620480/758414219732451328/among-us-icon.png"
+      )
+      .addField("Code de la partie", "`" + message.content + "`", true)
+      .addField("Dernier Crack du jeu", "[Lien médiafire](https://google.com)")
+      .setColor("fcda42")
+  );
+};
