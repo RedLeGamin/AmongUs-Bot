@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const linkCrack = require("../config.json").linkCrack;
 
 exports.run = (client, message, args, tools) => {
-  return;
+  //return;
   var member = args[0];
   if (!member) member = message.author;
   else {
@@ -13,10 +13,13 @@ exports.run = (client, message, args, tools) => {
     if (!member) return message.reply("Membre introuvable");
   }
   var game = member.presence.game;
+  console.log(game)
   if (!game || game.name != "Among Us")
     return message.reply(member + " ne joue pas à Among Us");
   var party = game.party;
 
+  if(game.details=="Playing")
+    return message.reply(member + " est déjà en partie");
   if (!party || !party.size || !party.size[1])
     return message.reply(member + " n'est pas en partie");
   const embed = new Discord.RichEmbed()
