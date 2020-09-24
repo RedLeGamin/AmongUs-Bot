@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const linkCrack = require("../config.json").linkCrack;
 
 exports.run = (client, message, args, tools) => {
+  return;
   var member = args[0];
   if (!member) member = message.author;
   else {
