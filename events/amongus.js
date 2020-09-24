@@ -1,16 +1,14 @@
 const Discord = require("discord.js");
 const linkCrack = require("../config.json").linkCrack;
 exports.run = async (client, message, args, tools) => {
-  return;
-  
+    console.log(message.content)
   if (
     message.content.length != 6 ||
     ["Q", "N"].includes(message.content.slice(-1)) == false
   )
     return;
-  await message.channel.send(
-    " ",
-    new Discord.MessageEmbed()
+  
+  const embed =  new Discord.RichEmbed()
       .setAuthor(
         "Partie Among Us - Invite de " + message.author.tag,
         "https://media.discordapp.net/attachments/405780210265620480/758414219732451328/among-us-icon.png"
@@ -25,6 +23,6 @@ exports.run = async (client, message, args, tools) => {
         "[Lien médiafire](" + linkCrack + ")",
         true
       )
-      .setColor("fcda42")
-  );
+      .setColor("fcda42");
+  message.channel.send(embed);
 };
