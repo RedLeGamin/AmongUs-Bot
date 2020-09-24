@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const linkCrack = require("../config.json").linkCrack;
 exports.run = async (client, message, args, tools) => {
+  return;
   
   if (
     message.content.length != 6 ||
