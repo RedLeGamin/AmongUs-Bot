@@ -23,12 +23,16 @@ exports.run = async (client, message, args, tools) => {
       "[Lien médiafire](" + linkCrack + ")",
       true
     )
-    .setColor("fcda42");
+    .setColor("fcda42")
+    .setImage(
+      "https://cdn.discordapp.com/attachments/429158600720515077/758741106258608158/unknown.png"
+    );
   var game = message.author.presence.game;
   if (game) {
     var party = game.party;
-    if(!party || !party.size || !party.size[1]) return;
-    embed.addField("Place", `${party.size[0]}/${party.size[1]}`);
+    if(!party || !party.size || !party.size[1] || !game.details) return;
+    embed.addField("Place", `${party.size[0]}/${party.size[1]} <:Liste:410856444813115393>`, true);  
+    embed.addField("Status", game.details, true);
   }
   message.channel.send(embed);
 };
