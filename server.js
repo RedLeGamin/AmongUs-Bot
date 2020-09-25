@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const prefix = require("./config.json").prefix;
 
 const token = process.env.token;
-const userTrack = [];
+const usersTracked = [];
 const client = new Discord.Client();
 const reactionsChannel = require("./data/reactionsChannels.json");
 client.commands = new Discord.Collection();
@@ -15,7 +15,8 @@ client.on("ready", async () => {
 client.on("userUpdate", (oldUser, newUser) => {
   try {
     let commandFile = require(`./events/userTracker.js`);
-    commandFile.run(client, oldUser, newUser);
+    commandFile.run(client, oldUser, newUser, usersTracked);
+    console.log(usersTracked)
   } catch (e) {
     console.log(e.message);
   }
