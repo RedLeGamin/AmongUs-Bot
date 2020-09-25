@@ -3,13 +3,22 @@ const Discord = require("discord.js");
 const prefix = require("./config.json").prefix;
 
 const token = process.env.token;
-
+const userTrack = [];
 const client = new Discord.Client();
 const reactionsChannel = require("./data/reactionsChannels.json");
 client.commands = new Discord.Collection();
 
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag}!`);
+});
+
+client.on("userUpdate", (oldUser, newUser) => {
+  try {
+    let commandFile = require(`./events/userTracker.js`);
+    commandFile.run(client, oldUser, newUser);
+  } catch (e) {
+    console.log(e.message);
+  }
 });
 
 client.on("message", message => {
