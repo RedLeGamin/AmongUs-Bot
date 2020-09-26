@@ -32,11 +32,6 @@ exports.run = (client, message, args, tools) => {
       "`" + game.party.id + "`",
       true
     )
-    .addField(
-      "Dernier Crack du jeu",
-      "[Lien médiafire](" + linkCrack + ")",
-      true
-    )
     .setColor("fcda42")
     .setImage(
       "https://cdn.discordapp.com/attachments/429158600720515077/758741106258608158/unknown.png"
@@ -47,6 +42,6 @@ exports.run = (client, message, args, tools) => {
     `${party.size[0]}/${party.size[1]} <:Liste:410856444813115393>`,
     true
   );
-  embed.addField("Status", game.details, true);
+  embed.addField("Status", game.status, true);
   message.channel.send(embed);
 };

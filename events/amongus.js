@@ -19,11 +19,6 @@ exports.run = async (client, message, args, tools) => {
       "`" + message.content.toUpperCase() + "`",
       true
     )
-    .addField(
-      "Dernier Crack du jeu",
-      "[Lien médiafire](" + linkCrack + ")",
-      true
-    )
     .setColor("fcda42")
     .setImage(
       "https://cdn.discordapp.com/attachments/429158600720515077/758741106258608158/unknown.png"
