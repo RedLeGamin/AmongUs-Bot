@@ -1,0 +1,91 @@
+{
+  "status": "online",
+
+  "game": {
+    "name": "Films et TV",
+
+    "type": 0,
+
+    "url": null,
+
+    "details": null,
+
+    "state": null,
+
+    "applicationID": null,
+
+    "timestamps": { "start": "2020-09-28T16:47:26.461Z", "end": null },
+
+    "party": null,
+
+    "assets": null,
+
+    "emoji": null,
+
+    "createdTimestamp": 1601311650356,
+
+    "syncID": undefined,
+
+    "_flags": undefined
+  },
+
+  "activities": [
+    {
+      "name": "Films et TV",
+
+      "type": 0,
+
+      "url": null,
+
+      "details": null,
+
+      "state": null,
+
+      "applicationID": null,
+
+      "timestamps": [Object],
+
+      "party": null,
+
+      "assets": null,
+
+      "emoji": null,
+
+      "createdTimestamp": 1601311650356,
+
+      "syncID": undefined,
+
+      "_flags": undefined
+    },
+
+    {
+      "name": "Spotify",
+
+      "type": 2,
+
+      "url": null,
+
+      "details": "changes",
+
+      "state": "XXXTENTACION",
+
+      "applicationID": null,
+
+      "timestamps": [Object],
+
+      "party": [Object],
+
+      "assets": [RichPresenceAssets],
+
+      "emoji": null,
+
+      "createdTimestamp": 1601311604786,
+
+      "syncID": "7AFASza1mXqntmGtbxXprO",
+
+      "_flags": 48
+    }
+  ],
+
+  "clientStatus": { "desktop": "online" }
+}

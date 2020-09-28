@@ -1,0 +1,91 @@
+{
+  "status": "online",
+
+  "game": {
+    "name": "Among Us",
+
+    "type": 0,
+
+    "url": null,
+
+    "details": null,
+
+    "state": null,
+
+    "applicationID": null,
+
+    "timestamps": { "start": "2020-09-28T16:45:39.313Z", "end": null },
+
+    "party": null,
+
+    "assets": null,
+
+    "emoji": null,
+
+    "createdTimestamp": 1601311580654,
+
+    "syncID": undefined,
+
+    "_flags": undefined
+  },
+
+  "activities": [
+    {
+      "name": "Among Us",
+
+      "type": 0,
+
+      "url": null,
+
+      "details": null,
+
+      "state": null,
+
+      "applicationID": null,
+
+      "timestamps": [Object],
+
+      "party": null,
+
+      "assets": null,
+
+      "emoji": null,
+
+      "createdTimestamp": 1601311580654,
+
+      "syncID": undefined,
+
+      "_flags": undefined
+    },
+
+    {
+      "name": "Spotify",
+
+      "type": 2,
+
+      "url": null,
+
+      "details": "make up",
+
+      "state": "POORSTACY",
+
+      "applicationID": null,
+
+      "timestamps": [Object],
+
+      "party": [Object],
+
+      "assets": [RichPresenceAssets],
+
+      "emoji": null,
+
+      "createdTimestamp": 1601311500786,
+
+      "syncID": "1uxDHAH3cPPg5tmzcoDAIH",
+
+      "_flags": 48
+    }
+  ],
+
+  "clientStatus": { "desktop": "online" }
+}
