@@ -1,5 +1,7 @@
+const langData = require('./lang.json')
+
 module.exports = class translation {
-  constructor(msg, variables) {
-    
+  constructor(lang, msg, variables) {
+    var locale = langData[lang][msg]
   }
-}
+};
