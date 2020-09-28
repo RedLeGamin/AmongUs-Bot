@@ -1,0 +1,102 @@
+{
+  "status": "online",
+
+  "game": {
+    "name": "Spotify",
+
+    "type": 2,
+
+    "url": null,
+
+    "details": "Lucid Dreams",
+
+    "state": "Juice WRLD",
+
+    "applicationID": null,
+
+    "timestamps": {
+      "start": "2020-09-28T16:48:43.016Z",
+      "end": "2020-09-28T16:52:42.851Z"
+    },
+
+    "party": { "id": "spotify:219380115602145280" },
+
+    "assets": {
+      "largeText": "Late Night Drives",
+
+      "smallText": null,
+
+      "largeImage": "spotify:ab67616d0000b2738cd2a118a00e2515bbff31e1",
+
+      "smallImage": null
+    },
+
+    "emoji": null,
+
+    "createdTimestamp": 1601311727122,
+
+    "syncID": "3mkKuameQAmxFMcgoQ17Ak",
+
+    "_flags": 48
+  },
+
+  "activities": [
+    {
+      "name": "Spotify",
+
+      "type": 2,
+
+      "url": null,
+
+      "details": "Lucid Dreams",
+
+      "state": "Juice WRLD",
+
+      "applicationID": null,
+
+      "timestamps": [Object],
+
+      "party": [Object],
+
+      "assets": [RichPresenceAssets],
+
+      "emoji": null,
+
+      "createdTimestamp": 1601311727122,
+
+      "syncID": "3mkKuameQAmxFMcgoQ17Ak",
+
+      "_flags": 48
+    },
+
+    {
+      "name": "Among Us",
+
+      "type": 0,
+
+      "url": null,
+
+      "details": "Hosting a game",
+
+      "state": "In Lobby",
+
+      "applicationID": "477175586805252107",
+
+      "timestamps": [Object],
+
+      "party": [Object],
+
+      "assets": [RichPresenceAssets],
+
+      "emoji": null,
+
+      "createdTimestamp": 1601311930196,
+
+      "syncID": undefined,
+
+      "_flags": 2
+    }
+  ],
+
+  "clientStatus": { "desktop": "online" }
+}

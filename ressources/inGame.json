@@ -1,0 +1,102 @@
+{
+  "status": "online",
+
+  "game": {
+    "name": "Spotify",
+
+    "type": 2,
+
+    "url": null,
+
+    "details": "Cabeza",
+
+    "state": "OBOY",
+
+    "applicationID": null,
+
+    "timestamps": {
+      "start": "2020-09-28T16:52:43.344Z",
+      "end": "2020-09-28T16:55:11.379Z"
+    },
+
+    "party": { "id": "spotify:219380115602145280" },
+
+    "assets": {
+      "largeText": "Mafana",
+
+      "smallText": null,
+
+      "largeImage": "spotify:ab67616d0000b27342f781174d6c8b5f0f1086de",
+
+      "smallImage": null
+    },
+
+    "emoji": null,
+
+    "createdTimestamp": 1601311967450,
+
+    "syncID": "66tNDqYNR2S6Svwgm3BMi9",
+
+    "_flags": 48
+  },
+
+  "activities": [
+    {
+      "name": "Spotify",
+
+      "type": 2,
+
+      "url": null,
+
+      "details": "Cabeza",
+
+      "state": "OBOY",
+
+      "applicationID": null,
+
+      "timestamps": [Object],
+
+      "party": [Object],
+
+      "assets": [RichPresenceAssets],
+
+      "emoji": null,
+
+      "createdTimestamp": 1601311967450,
+
+      "syncID": "66tNDqYNR2S6Svwgm3BMi9",
+
+      "_flags": 48
+    },
+
+    {
+      "name": "Among Us",
+
+      "type": 0,
+
+      "url": null,
+
+      "details": "Playing",
+
+      "state": "In Game",
+
+      "applicationID": "477175586805252107",
+
+      "timestamps": [Object],
+
+      "party": {},
+
+      "assets": [RichPresenceAssets],
+
+      "emoji": null,
+
+      "createdTimestamp": 1601312052989,
+
+      "syncID": undefined,
+
+      "_flags": undefined
+    }
+  ],
+
+  "clientStatus": { "desktop": "online" }
+}
