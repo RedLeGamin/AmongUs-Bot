@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const prefix = require("./config.json").prefix;
+const getGame = require("./ressources/getGame")
 
 const token = process.env.token;
 const usersTracked = [];
