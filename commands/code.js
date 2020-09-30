@@ -24,11 +24,11 @@ exports.run = (client, message, args, tools) => {
     return message.reply(member + " n'est pas en partie");
   const embed = new Discord.RichEmbed()
     .setAuthor(
-      "Partie Among Us - Partie de " + member.tag,
+      member.username+ "'s Among Us Game",
       "https://media.discordapp.net/attachments/405780210265620480/758414219732451328/among-us-icon.png"
     )
     .addField(
-      "Code de la partie <:Liste:410856444813115393>",
+      "Game code <:Liste:410856444813115393>",
       "`" + game.party.id + "`",
       true
     )
