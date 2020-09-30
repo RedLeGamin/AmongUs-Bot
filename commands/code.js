@@ -15,11 +15,11 @@ exports.run = (client, message, args, tools) => {
   var game = member.presence.game;
   console.log(game)
   if (!game || game.name != "Among Us")
-    return message.reply(member + " ne joue pas à Among Us");
+    return message.reply("This user isn't playing Among Us or disabled Discord Game Activity");
   var party = game.party;
 
   if(game.details=="Playing")
-    return message.reply(member + " est déjà en partie");
+    return message.reply(" est déjà en partie");
   if (!party || !party.size || !party.size[1])
     return message.reply(member + " n'est pas en partie");
   const embed = new Discord.RichEmbed()
