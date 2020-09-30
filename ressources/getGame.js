@@ -1,7 +1,7 @@
 
 module.exports = class game {
   constructor(user) {
-    if(!user.presence)  throw "r";
+    if(!user.presence)  throw console.error("Aucune presence");
     this.state = 1;
   }
 };
