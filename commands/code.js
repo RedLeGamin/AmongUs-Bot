@@ -13,7 +13,6 @@ exports.run = (client, message, args, tools) => {
     if (!member) return message.reply("Membre introuvable");
   }
   var game = member.presence.game;
-  console.log(game)
   if (!game || game.name != "Among Us")
     return message.reply("This user isn't playing Among Us or disabled Discord Game Activity");
   var party = game.party;
