@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const prefix = require("./config.json").prefix;
-const getGame = require("./ressources/getGame")
+const getGame = require("./ressources/getGame");
 
 const token = process.env.token;
 const usersTracked = [];
@@ -9,6 +9,7 @@ client.commands = new Discord.Collection();
 
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setActivity('Blue', { type: 'WATCHING' });
 });
 
 client.on("message", message => {
@@ -32,7 +33,7 @@ client.on("message", message => {
     let commandFile = require(`./commands/${command}.js`);
     commandFile.run(client, message, args);
   } catch (e) {
-    if(e)console.log(e.message);
+    if (e) console.log(e.message);
   }
 });
 

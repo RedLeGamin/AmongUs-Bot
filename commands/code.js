@@ -13,15 +13,14 @@ exports.run = (client, message, args, tools) => {
     if (!member) return message.reply("Membre introuvable");
   }
   var game = member.presence.game;
-  console.log(game)
   if (!game || game.name != "Among Us")
     return message.reply("This user isn't playing Among Us or disabled Discord Game Activity");
   var party = game.party;
 
   if(game.details=="Playing")
-    return message.reply(" est déjà en partie");
+    return message.reply(" is already playing, wait for the game to finish !");
   if (!party || !party.size || !party.size[1])
-    return message.reply(member + " n'est pas en partie");
+    return message.reply(member + " isn't in a game");
   const embed = new Discord.RichEmbed()
     .setAuthor(
       member.username+ "'s Among Us Game",
