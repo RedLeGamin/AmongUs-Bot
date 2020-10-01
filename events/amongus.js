@@ -11,11 +11,11 @@ exports.run = async (client, message, args, tools) => {
 
   const embed = new Discord.RichEmbed()
     .setAuthor(
-      "Partie Among Us - Invite de " + message.author.tag,
+      message.author.username+ "'s Among Us Game",
       "https://media.discordapp.net/attachments/405780210265620480/758414219732451328/among-us-icon.png"
     )
     .addField(
-      "Code de la partie <:Liste:410856444813115393>",
+      "Game code <:Liste:410856444813115393>",
       "`" + message.content.toUpperCase() + "`",
       true
     )
