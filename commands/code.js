@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const linkCrack = require("../config.json").linkCrack;
 
+const bg = require("../ressources/randomBg.js")
 exports.run = (client, message, args, tools) => {
   //return;
   var member = args[0];
@@ -33,7 +34,7 @@ exports.run = (client, message, args, tools) => {
     )
     .setColor("fcda42")
     .setImage(
-      "https://cdn.discordapp.com/attachments/429158600720515077/758741106258608158/unknown.png"
+      bg()
     );
 
   embed.addField(
