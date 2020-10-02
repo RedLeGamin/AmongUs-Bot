@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
+const bg = require("../ressources/randomBg.js")
 const linkCrack = require("../config.json").linkCrack;
 exports.run = async (client, message, args, tools) => {
-  return;
   if (
     message.content.length != 6 ||
     ["Q", "N"].includes(message.content.slice(-1)) == false
@@ -20,8 +20,7 @@ exports.run = async (client, message, args, tools) => {
     )
     .setColor("fcda42")
     .setImage(
-      "https://cdn.discordapp.com/attachments/429158600720515077/758741106258608158/unknown.png"
-    );
+      bg()) 
   var game = message.author.presence.game;
   if (game) {
     var party = game.party;

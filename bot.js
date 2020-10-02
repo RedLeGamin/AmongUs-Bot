@@ -9,7 +9,7 @@ client.commands = new Discord.Collection();
 
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity('Blue', { type: 'WATCHING' });
+  client.user.setActivity('/code to share codes! - /help', { type: 'PLAYING' });
 });
 
 client.on("message", message => {
