@@ -29,7 +29,7 @@ client.on("presenceUpdate", (oldUser, newUser) => {
     myCache.set(newGame.user,  {code : party.code, size : party.size, maxSize : party.maxSize});
   }
   if (!newGame || newGame.stateType == "MENU") {
-    myCache.del(newGame.user)
+    myCache.del(newUser.id)
   }
   console.log(myCache.get(newGame.user))
 });
