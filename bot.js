@@ -18,7 +18,6 @@ client.on("ready", async () => {
 client.on("presenceUpdate", (oldUser, newUser) => {
   var oldGame = getGame(oldUser);
   var newGame = getGame(newUser);
-  console.log(newGame)
   if (newGame && newGame.stateType == "LOBBY") {
     var party = newGame.party;
     myCache.set(newGame.user,  {code : party.code, size : party.size, maxSize : party.maxSize});
@@ -31,7 +30,6 @@ client.on("presenceUpdate", (oldUser, newUser) => {
   if (!newGame || newGame.stateType == "MENU") {
     myCache.del(newUser.id)
   }
-  console.log(myCache.get(newGame.user))
 });
 
 
