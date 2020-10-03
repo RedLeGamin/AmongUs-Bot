@@ -23,7 +23,7 @@ client.on("presenceUpdate", (oldUser, newUser) => {
     var party = newGame.party;
     myCache.set(newGame.user,  {code : party.code, size : party.size, maxSize : party.maxSize});
   }
-  if (oldGame.stateType == "LOBBY" && newGame.stateType == "GAME") {
+  if (oldGame && newGame && oldGame.stateType == "LOBBY" && newGame.stateType == "GAME") {
     
     var party = oldGame.party;
     myCache.set(newGame.user,  {code : party.code, size : party.size, maxSize : party.maxSize});
