@@ -14,7 +14,7 @@ exports.run = (client, message, args, tools) => {
     if (!member) member = message.guild.members.get(args[0]);
     if (!member) return message.reply("Membre introuvable");
   }
-  var game = getGame(message.author);
+  var game = getGame(member);
   if (!game)
     return message.reply(
       "This user isn't playing Among Us or disabled Discord Game Activity"
