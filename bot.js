@@ -3,10 +3,14 @@ const prefix = require("./config.json").prefix;
 const getGame = require("./ressources/getGame");
 const NodeCache = require("node-cache");
 const myCache = new NodeCache();
-
+const express = require("express");
+const http = require("http");
+var app = express();
+const socket = require("socket.io");
+var serv = app.listen(4000);
 const token = process.env.token;
 process.env.codes = {};
-const usersTracked = [];
+const server = http.Server();
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
@@ -18,22 +22,31 @@ client.on("ready", async () => {
 client.on("presenceUpdate", (oldUser, newUser) => {
   var oldGame = getGame(oldUser);
   var newGame = getGame(newUser);
-  console.log(newGame)
   if (newGame && newGame.stateType == "LOBBY") {
     var party = newGame.party;
-    myCache.set(newGame.user,  {code : party.code, size : party.size, maxSize : party.maxSize});
+    myCache.set(newGame.user, {
+      code: party.code,
+      size: party.size,
+      maxSize: party.maxSize
+    });
   }
-  if (oldGame && newGame && oldGame.stateType == "LOBBY" && newGame.stateType == "GAME") {
-    
+  if (
+    oldGame &&
+    newGame &&
+    oldGame.stateType == "LOBBY" &&
+    newGame.stateType == "GAME"
+  ) {
     var party = oldGame.party;
-    myCache.set(newGame.user,  {code : party.code, size : party.size, maxSize : party.maxSize});
+    myCache.set(newGame.user, {
+      code: party.code,
+      size: party.size,
+      maxSize: party.maxSize
+    });
   }
   if (!newGame || newGame.stateType == "MENU") {
-    myCache.del(newGame.user)
+    myCache.del(newUser.id);
   }
-  console.log(myCache.get(newGame.user))
 });
-
 
 client.on("message", message => {
   const args = message.content
