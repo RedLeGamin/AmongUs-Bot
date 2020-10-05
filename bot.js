@@ -44,7 +44,7 @@ client.on("presenceUpdate", (oldUser, newUser) => {
     });
   }
   if (!newGame || newGame.stateType == "MENU") {
-    myCache.del(newUser.id);
+    myCache.del(newUser.id)
   }
 });
 
