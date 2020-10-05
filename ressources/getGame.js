@@ -1,9 +1,6 @@
 module.exports = user => {
   var presence = user.presence;
   var game;
-  //console.log(presence)
-  //console.log(presence.game && presence.game.applicationID == "477175586805252107")
-  //console.log(presence.activities)
   if (presence.game && presence.game.applicationID == "477175586805252107")
     game = presence.game;
   else if (presence.activities) {
@@ -15,7 +12,6 @@ module.exports = user => {
     }
   }
   if (!game) return;
-  console.log(game)
   var stateType;
   var state = game.state;
   // Switch statement was not working for some reason ? I never used it before so maybe i did something wrong
@@ -27,7 +23,7 @@ module.exports = user => {
     case "In Game":
       stateType = "GAME";
     default:
-      "MENU";
+      stateType = "MENU";
   }*/
   var state = game.state ? game.state : game.details
   if (state == "In Lobby") stateType = "LOBBY";

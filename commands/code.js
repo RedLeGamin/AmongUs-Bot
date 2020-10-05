@@ -12,7 +12,7 @@ exports.run = (client, message, args, tools) => {
 
     if (member) member = message.guild.members.get(member.id);
     if (!member) member = message.guild.members.get(args[0]);
-    if (!member) return message.reply("Membre introuvable");
+    if (!member) return message.reply("Unknown user");
   }
   var game = getGame(member);
   if (!game)
@@ -44,7 +44,6 @@ exports.run = (client, message, args, tools) => {
     cache.get(member.id) ? `${cache.get(member.id).size}/${cache.get(member.id).maxSize} <:Liste:410856444813115393>` : `${party.size}/${party.maxSize} <:Liste:410856444813115393>`,
     true
   );
-  console.log(game.status)
   embed.addField("Status", game.state, true);
   message.channel.send(embed);
 };
